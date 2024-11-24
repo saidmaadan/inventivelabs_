@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Icons } from '@/components/icons'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { useToast } from '@/components/ui/use-toast'
+import { toast } from "sonner"
 
 interface Session {
   id: string
@@ -18,7 +18,7 @@ interface Session {
 export default function SessionsPage() {
   const { data: session } = useSession()
   const router = useRouter()
-  const { toast } = useToast()
+  
   const [isLoading, setIsLoading] = useState(false)
   const [sessions, setSessions] = useState<Session[]>([])
 

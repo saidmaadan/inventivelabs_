@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { fadeIn, staggerContainer, textVariant } from '@/lib/utils'
+import Link from 'next/link'
 
 export function HeroSection() {
   return (
@@ -39,13 +40,13 @@ export function HeroSection() {
             className="mt-8 flex flex-wrap items-center justify-center gap-4"
           >
             <Button size="lg" asChild>
-              <a href="/contact">
+              <Link href="/contact">
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild>
-              <a href="/projects">View Our Work</a>
+              <Link href="/projects">View Our Work</Link>
             </Button>
           </motion.div>
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -14,7 +14,7 @@ interface AuthFormProps extends React.HTMLAttributes<HTMLDivElement> {
   type: 'signin' | 'signup'
 }
 
-export function AuthForm({ type, className, ...props }: AuthFormProps) {
+function AuthFormContent({ type, className, ...props }: AuthFormProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   
@@ -157,5 +157,17 @@ export function AuthForm({ type, className, ...props }: AuthFormProps) {
         GitHub
       </Button>
     </div>
+  )
+}
+
+export function AuthForm(props: AuthFormProps) {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-center">
+        <Icons.spinner className="h-6 w-6 animate-spin" />
+      </div>
+    }>
+      <AuthFormContent {...props} />
+    </Suspense>
   )
 }

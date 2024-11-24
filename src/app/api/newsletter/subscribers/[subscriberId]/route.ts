@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { z } from "zod"
 
-import { authOptions } from "@/lib/auth"
+import { auth } from "@/auth"
 import { prisma } from "@/lib/prisma"
 import { subscriberUpdateSchema } from "@/lib/validations/subscriber"
 
@@ -11,7 +11,7 @@ export async function GET(
   { params }: { params: { subscriberId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user || session.user.role !== "ADMIN") {
       return new NextResponse("Unauthorized", { status: 403 })
     }
@@ -35,7 +35,7 @@ export async function PATCH(
   { params }: { params: { subscriberId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user || session.user.role !== "ADMIN") {
       return new NextResponse("Unauthorized", { status: 403 })
     }
@@ -63,7 +63,7 @@ export async function DELETE(
   { params }: { params: { subscriberId: string } }
 ) {
   try {
-    const session = await getServerSession(authOptions)
+    const session = await auth()
     if (!session?.user || session.user.role !== "ADMIN") {
       return new NextResponse("Unauthorized", { status: 403 })
     }

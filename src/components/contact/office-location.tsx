@@ -1,7 +1,7 @@
 "use client";
 
 import { MapPin, Phone, Mail } from "lucide-react";
-// import { GoogleMap } from "@/components/maps/google-map";
+
 import type { OfficeLocation } from "@/types/contact";
 
 interface OfficeLocationProps {
@@ -51,21 +51,7 @@ export function OfficeLocation({ office }: OfficeLocationProps) {
         </div>
       </div>
 
-      {/* <div className="aspect-[4/3] overflow-hidden rounded-lg">
-        <GoogleMap
-          center={{ lat: office.coordinates.lat, lng: office.coordinates.lng }}
-          zoom={15}
-          markers={[
-            {
-              position: {
-                lat: office.coordinates.lat,
-                lng: office.coordinates.lng,
-              },
-              title: office.name,
-            },
-          ]}
-        />
-      </div> */}
+      
     </div>
   );
 }

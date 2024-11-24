@@ -1,12 +1,12 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { toast } from 'sonner'
 
-export default function SetPasswordPage() {
+function SetPasswordForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
@@ -67,40 +67,36 @@ export default function SetPasswordPage() {
     <div className="container max-w-md mx-auto mt-20 p-6">
       <h1 className="text-2xl font-bold mb-6">Set Your Password</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-2">
-            New Password
-          </label>
+        <div className="space-y-2">
           <Input
             type="password"
+            placeholder="New Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            minLength={8}
-            className="w-full"
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium mb-2">
-            Confirm Password
-          </label>
+        <div className="space-y-2">
           <Input
             type="password"
+            placeholder="Confirm Password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
-            minLength={8}
-            className="w-full"
           />
         </div>
-        <Button
-          type="submit"
-          className="w-full"
-          disabled={isLoading}
-        >
+        <Button type="submit" disabled={isLoading}>
           {isLoading ? 'Setting Password...' : 'Set Password'}
         </Button>
       </form>
     </div>
+  )
+}
+
+export default function SetPasswordPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SetPasswordForm />
+    </Suspense>
   )
 }

@@ -34,6 +34,8 @@ yarn-error.log*
 .env.local
 .env
 mics/
+instructions/
+/instructions
 
 # vercel
 .vercel

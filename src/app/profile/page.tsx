@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
@@ -15,9 +15,18 @@ export default function ProfilePage() {
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
 
+  useEffect(() => {
+    if (!session?.user) {
+      router.push('/auth/signin')
+    }
+  }, [session, router])
+
   if (!session?.user) {
-    router.push('/auth/signin')
-    return null
+    return (
+      <div className="container max-w-2xl py-8 flex justify-center">
+        <Icons.spinner className="h-6 w-6 animate-spin" />
+      </div>
+    )
   }
 
   const { name, email, image } = session.user
