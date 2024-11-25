@@ -1,6 +1,7 @@
 export default function Terms() {
     return (
         <div className="py-20">
+            <h1 className="text-2xl mb-6 font-bold">Terms of Service</h1>
 <div className="">
 <p className="text-lg mb-6">Thank you for choosing InventiveLabs for your web development needs. By using our services, you agree to the following terms of service:</p>
 </div>
