@@ -10,12 +10,6 @@ import { Button } from "@/components/ui/button";
 import { SocialShare } from "@/components/shared/social-share";
 import { SimilarPosts } from "@/components/blog/similar-posts";
 
-interface BlogPostPageProps {
-  params: {
-    slug: string;
-  };
-}
-
 async function getBlogPost(slug: string) {
   const post = await prisma.blog.findUnique({
     where: { slug },
@@ -34,7 +28,9 @@ async function getBlogPost(slug: string) {
 
 export async function generateMetadata({
   params,
-}: BlogPostPageProps): Promise<Metadata> {
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const post = await getBlogPost(params.slug);
 
   return {
@@ -54,7 +50,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
+export default async function BlogPostPage({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: Record<string, string | string[] | undefined>;
+}) {
   const post = await getBlogPost(params.slug);
 
   return (

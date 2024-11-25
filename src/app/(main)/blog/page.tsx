@@ -10,14 +10,15 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic"
 
-interface SearchParams {
+type SearchParams = {
   category?: string
   page?: string
   search?: string
 }
 
-interface BlogPageProps {
-  searchParams?: SearchParams
+type Props = {
+  params: {}
+  searchParams: SearchParams
 }
 
 async function getBlogs(searchParams?: SearchParams) {
@@ -84,7 +85,7 @@ async function getCategories() {
   return categories
 }
 
-export default async function BlogPage({ searchParams }: BlogPageProps) {
+export default async function BlogPage({ params, searchParams }: Props) {
   const [{ blogs, total, pageCount, currentPage }, categories] = await Promise.all([
     getBlogs(searchParams),
     getCategories(),
