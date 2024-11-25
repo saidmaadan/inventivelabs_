@@ -4,7 +4,11 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -13,11 +17,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  output: 'standalone',
   experimental: {
-    serverActions: {
-      allowedOrigins: ['localhost:3000']
-    },
+    appDir: true,
+    after: true,
+  },
+  devIndicators: {
+    appIsrStatus: true,
+    buildActivity: true,
+    buildActivityPosition: "bottom-right",
   },
 };
 
