@@ -125,7 +125,7 @@ export function Navbar() {
                   </div>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    {user.role === 'ADMIN' && <Link href="/admin">Admin Dashboard</Link>}
+                    {session.user.role === 'ADMIN' && <Link href="/admin">Admin Dashboard</Link>}
                   </DropdownMenuItem>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem
